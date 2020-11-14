@@ -118,6 +118,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias i3cfg="vim ~/.config/i3/config"
-alias picfg="vim ~/.config/picom/picom.conf"
-alias roficfg="vim ~/.config/rofi/"
+alias dots="vim ~/.dots"
+alias dotsi3="vim ~/.dots/i3config"
+alias dotspi="vim ~/.dots/picom.conf"
+alias dotsro="vim ~/.dots/rofi"
+alias dotsdu="vim ~/.dots/dunstrc"
