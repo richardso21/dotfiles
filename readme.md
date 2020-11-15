@@ -1,7 +1,7 @@
 # Welcome to my (richardso21's) dotfiles
-You'll be dissapointed to see I have no use for polybar or fancy theming (yet). My setup is optimized for my workflow, while looking decent enough that my eyes don't melt.
+These are my dotfiles for my linux setup (i3-gaps, zsh, etc.). You'll be dissapointed to see I have no use for polybar or fancy theming (yet). This setup is optimized for my own workflow, while looking decent enough that it wont't melt eyes.
 
-**I USE W,A,S,D** _(not HJKL or JKL;)_ **FOR i3 MOVEMENT.** C'mon, you can move windows with just ONE hand, how great is that? _Before you ask, no, I don't use WASD for vim._
+**_NOTE_: I USE W,A,S,D** _(not HJKL or JKL;)_ **FOR i3 MOVEMENT.** It's just my personal preference.
 
 ## Dependencies (Stuff I use)
  - i3-gaps (gaps for the win)
@@ -14,7 +14,10 @@ You'll be dissapointed to see I have no use for polybar or fancy theming (yet). 
  - picom (screen tearing & nicer looks)
  - dunst (minimal notifs)
  - rofi + adi1090x/rofi (app menu)
- - Alacritty (terminal)
+ - zsh (terminal)
+   - Alacritty (terminal emulator)
+   - powerlevel10k (theme)
+   - zsh autocomplete/syntax highlighting
  - Numix Circle Icons
  - Flat Remix GTK Blue Darkest (gtk theme; in case you didn't know, blue's my favorite color)
  - San Francisco (SFNS) Display Font
