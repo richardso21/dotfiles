@@ -24,10 +24,12 @@ exec xinput set-prop 10 327 0, 1
 exec xinput set-prop 10 324 -0.117647
 
 # AUTOSTART APPS
-exec mailspring
-exec slack
+exec --no-startup-id copyq
+exec "sleep 30; mailspring"
+exec "sleep 30; slack"
 exec firefox
 exec alacritty
+exec --no-startup-id "kdeconnect-cli -d 76b8dbf3a27ccf24"
 
 # ASSIGN WORKSPACES
 assign [class="Alacritty"] 1
@@ -37,12 +39,17 @@ assign [class="Mailspring"] 5
 
 # FLOATING WINDOW EXCEPTIONS
 for_window [class="zoom"] floating enable
+for_window [class="copyq"] floating enable
 
 # AUTO TILING
 exec_always --no-startup-id autotiling
 
 # POLKIT (PASS AUTH)
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# SCREENSHOTS
+bindsym --release $mod+Print exec --no-startup-id gnome-screenshot
+bindsym --release $mod+Shift+Print exec --no-startup-id gnome-screenshot -a
 
 # BINDINGS
 # file nautilus
@@ -195,6 +202,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# XAUTOLOCK
+exec xautolock -locker i3lock-fancy
+
 # SYSTEM POWER
 set $Locker i3lock-fancy && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -235,8 +245,11 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # finds out, if available)
 bar {
 	position top
+	font pango:SFNS Display, Font Awesome 5 Free 11 
 	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	status_command i3status -c ~/.config/i3/i3status.conf
+	
+	#tray_output none
 	colors {
 		background $bg-color
 	    	separator #757575

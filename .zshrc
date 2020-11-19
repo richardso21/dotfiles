@@ -123,3 +123,5 @@ alias dotsi3="vim ~/.dots/i3config"
 alias dotspi="vim ~/.dots/picom.conf"
 alias dotsro="vim ~/.dots/rofi"
 alias dotsdu="vim ~/.dots/dunstrc"
+
+alias vsc="code -r $1"
