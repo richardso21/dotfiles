@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/rs21/.oh-my-zsh"
@@ -124,4 +124,10 @@ alias dotspi="vim ~/.dots/picom.conf"
 alias dotsro="vim ~/.dots/rofi"
 alias dotsdu="vim ~/.dots/dunstrc"
 
-alias vsc="code -r $1"
+alias vsc="code -r $@"
+alias v="vim $@"
+
+# AUTOSTART WHEN NO DISPLAY
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+	  exec startx
+fi
