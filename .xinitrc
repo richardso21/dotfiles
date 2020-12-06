@@ -15,6 +15,10 @@ picom --experimental-backends --config ~/.config/picom/picom.conf -b &
 # middle click disable
 xbindkeys &
 
+# bind caps to esc / faster key speed
+setxkbmap -option caps:escape
+xset r rate 300 50
+
 # polkit
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 

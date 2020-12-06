@@ -18,7 +18,7 @@ exec --no-startup-id slack
 exec --no-startup-id discord
 exec --no-startup-id brave
 exec --no-startup-id alacritty
-exec --no-startup-id copyq
+exec --no-startup-id parcellite
 exec --no-startup-id "kdeconnect-cli -d 76b8dbf3a27ccf24"
 
 # ASSIGN WORKSPACES
@@ -33,7 +33,7 @@ for_window [class="zoom"] floating enable
 for_window [class="copyq"] floating enable
 
 # AUTO TILING
-exec_always --no-startup-id autotiling
+exec_always --no-startup-id /home/rs21/miniconda3/bin/autotiling
 
 # SCREENSHOTS
 bindsym --release $mod+Print exec --no-startup-id gnome-screenshot
@@ -46,15 +46,15 @@ bindsym $mod+n exec nautilus --no-desktop --new-window
 bindsym $mod+b exec brave
 
 # FONT
-font pango:SFNS Display 11
+font pango:Lato 11
 
 # MEDIA KEYS
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
 bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # FLOATING MOD
 floating_modifier $mod
@@ -66,7 +66,7 @@ bindsym $mod+t exec --no-startup-id alacritty
 bindsym $mod+Shift+q kill
 
 # ROFI
-bindsym $mod+Return exec --no-startup-id ~/.config/rofi/launchers-git/launcher.sh
+bindsym $mod+Return exec --no-startup-id ~/.config/rofi/rofi/launcher.sh
 
 # change focus
 bindsym $mod+a focus left
@@ -170,33 +170,18 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resizing
-bindsym $mod+Mod1+a resize shrink width 30 px 
-bindsym $mod+Mod1+s resize grow height 30 px 
-bindsym $mod+Mod1+w resize shrink height 30 px 
-bindsym $mod+Mod1+d resize grow width 30 px
+bindsym $mod+Mod1+a resize shrink width 40 px 
+bindsym $mod+Mod1+s resize grow height 40 px 
+bindsym $mod+Mod1+w resize shrink height 40 px 
+bindsym $mod+Mod1+d resize grow width 40 px
 
-bindsym $mod+Mod1+Left resize shrink width 30 px 
-bindsym $mod+Mod1+Down resize grow height 30 px 
-bindsym $mod+Mod1+Up resize shrink height 30 px 
-bindsym $mod+Mod1+Right resize grow width 30 px
+bindsym $mod+Mod1+Left resize shrink width 40 px 
+bindsym $mod+Mod1+Down resize grow height 40 px 
+bindsym $mod+Mod1+Up resize shrink height 40 px 
+bindsym $mod+Mod1+Right resize grow width 40 px
 
-# SYSTEM POWER
-set $Locker i3lock-fancy && sleep 1
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+Pause mode "default"
-}
-bindsym $mod+Pause mode "$mode_system"
+# POWER MENU
+bindsym $mod+Pause exec --no-startup-id ~/.config/rofi/rofi/powermenu.sh
 
 # COLORS
 set $bg-color 	         #122747
@@ -204,7 +189,7 @@ set $bd-color 	         #1d66ad
 set $inactive-bg-color   #122747
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $urgent-bg-color     #3587e5
 
 title_align center
 smart_borders on
@@ -220,11 +205,19 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # finds out, if available)
 bar {
 	position top
-	font pango:SFNS Display, Font Awesome 5 Free 11 
-	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	status_command i3status -c ~/.config/i3/i3status.conf
+	height 25
+
+	font pango:Lato, Font Awesome 5 Free Solid 11
 	
+	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
+	status_command py3status -c ~/.config/i3/i3status.conf
+	
+	#status_command bumblebee-status -m cpu memory time \
+	#	pasink pasource -p time.format="%I:%M:%S%P" -t iceberg-dark-powerline
+
 	tray_output none
+
 	colors {
 		background $bg-color
 	    	separator #757575
