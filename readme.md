@@ -11,7 +11,7 @@ These are my dotfiles for my linux setup (i3-gaps, zsh, etc.). This setup is opt
 **_NOTE_: I USE W,A,S,D** _(not HJKL or JKL;)_ **FOR i3 MOVEMENT.** It's just my personal preference.
 
 ## Dependencies (Stuff I use)
- - i3-gaps
+ - i3-gaps (wm)
    - py3status (i3status wrapper)
    - playerctl (media)
    - pulseaudio-ctl (volume)
@@ -20,11 +20,11 @@ These are my dotfiles for my linux setup (i3-gaps, zsh, etc.). This setup is opt
  - dunst (notifications)
  - adi1090x/rofi (app & power menu)
  - Alacritty (terminal)
-   - zsh
+   - zsh (oh-my-zsh)
    - powerlevel10k
    - Vim Airline ('simple' theme)
  - Paprius Icons
- - Flat Remix GTK Blue Darkest (gtk theme)
+ - Flat Remix GTK Blue Darkest
  - Lato Font
 
 ## Important Information
