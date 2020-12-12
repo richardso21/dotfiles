@@ -82,9 +82,9 @@ case $chosen in
     $lock)
 		if [[ -f /usr/bin/i3lock ]]; then
 			#i3lock
-			betterlockscreen -l
+			betterlockscreen -l blur
 		elif [[ -f /usr/bin/betterlockscreen ]]; then
-			betterlockscreen -l
+			betterlockscreen -l blur
 		fi
         ;;
     $suspend)
@@ -102,6 +102,9 @@ case $chosen in
     $logout)
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
+
+			DESKTOP_SESSION="i3"
+
 			if [[ "$DESKTOP_SESSION" == "Openbox" ]]; then
 				openbox --exit
 			elif [[ "$DESKTOP_SESSION" == "bspwm" ]]; then

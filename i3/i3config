@@ -1,18 +1,32 @@
-# MOD
+# Welcome to my (richardso21's) i3 config!
+
+### I3 ###
+
+# mod
 set $mod Mod4
 
-# BG
-exec_always --no-startup-id feh --bg-fill ~/.dots/imgs/bg/ios.jpeg
+# floating mod
+floating_modifier $mod
 
-# GAPS
-gaps inner 7
-gaps outer 3
-for_window [class="^.*"] border pixel 2
-bindsym $mod+plus gaps inner current plus 5
-bindsym $mod+minus gaps inner current minus 5
-bindsym $mod+backslash gaps inner current set 7
+# kill
+bindsym $mod+Shift+q kill
 
-# AUTOSTART APPS
+# reload config
+bindsym $mod+Shift+c reload
+
+# restart i3
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# power menu
+bindsym $mod+Pause exec --no-startup-id ~/.config/rofi/rofi/powermenu.sh
+
+
+### APPS & AUTOSTART ###
+
+# autostart apps
 exec --no-startup-id mailspring
 exec --no-startup-id slack
 exec --no-startup-id discord
@@ -21,34 +35,37 @@ exec --no-startup-id alacritty
 exec --no-startup-id parcellite
 exec --no-startup-id "kdeconnect-cli -d 76b8dbf3a27ccf24"
 
-# ASSIGN WORKSPACES
-assign [class="firefox"] 2
-assign [class="Brave-browser"] 2
-assign [class="Slack"] 5
-assign [class="Mailspring"] 5
-assign [class="discord"] 5
+# app menu
+bindsym $mod+Return exec --no-startup-id ~/.config/rofi/rofi/launcher.sh
 
-# FLOATING WINDOW EXCEPTIONS
-for_window [class="zoom"] floating enable
-for_window [class="copyq"] floating enable
+# file manager
+bindsym $mod+n exec --no-startup-id nautilus --no-desktop --new-window
 
-# AUTO TILING
-exec_always --no-startup-id /home/rs21/miniconda3/bin/autotiling
-
-# SCREENSHOTS
-bindsym --release $mod+Print exec --no-startup-id gnome-screenshot
-bindsym --release $mod+Shift+Print exec --no-startup-id gnome-screenshot -a
-
-# FILE MANAGER
-bindsym $mod+n exec nautilus --no-desktop --new-window
-
-# BROWSER
+# browser
 bindsym $mod+b exec brave
 
-# FONT
-font pango:Lato 11
+# terminal (alacritty)
+bindsym $mod+t exec --no-startup-id alacritty
 
-# MEDIA KEYS
+# termius (ssh)
+bindsym $mod+Shift+t exec --no-startup-id termius
+
+# discord
+bindsym $mod+Shift+o exec --no-startup-id discord
+
+# slack
+bindsym $mod+Shift+l exec --no-startup-id slack
+
+# mailspring
+bindsym $mod+Shift+m exec --no-startup-id mailspring
+
+# spotify
+bindsym $mod+Shift+p exec --no-startup-id spotify
+
+# libreoffice
+bindsym $mod+Shift+f exec --no-startup-id libreoffice
+
+# media keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
 bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -56,25 +73,33 @@ bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# FLOATING MOD
-floating_modifier $mod
+# screenshots
+bindsym --release $mod+Print exec --no-startup-id gnome-screenshot
+bindsym --release $mod+Shift+Print exec --no-startup-id gnome-screenshot -a
 
-# TERMINAL
-bindsym $mod+t exec --no-startup-id alacritty
+# assign workspaces
+assign [class="firefox"] 2
+assign [class="Brave-browser"] 2
+assign [class="Slack"] 5
+assign [class="Mailspring"] 5
+assign [class="discord"] 5
+for_window [class="Spotify"] move to workspace $ws3
 
-# KILL 
-bindsym $mod+Shift+q kill
+# floating window exceptions
+for_window [class="zoom"] floating enable
+for_window [class="copyq"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
 
-# ROFI
-bindsym $mod+Return exec --no-startup-id ~/.config/rofi/rofi/launcher.sh
+
+### FUNCTION & MOVEMENT ###
 
 # change focus
 bindsym $mod+a focus left
 bindsym $mod+s focus down
 bindsym $mod+w focus up
 bindsym $mod+d focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -85,23 +110,35 @@ bindsym $mod+Shift+a move left
 bindsym $mod+Shift+s move down
 bindsym $mod+Shift+w move up
 bindsym $mod+Shift+d move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-# bindsym $mod+x split h
+# resizing
+bindsym $mod+Mod1+a resize shrink width 40 px
+bindsym $mod+Mod1+w resize grow height 40 px
+bindsym $mod+Mod1+s resize shrink height 40 px
+bindsym $mod+Mod1+d resize grow width 40 px
+bindsym $mod+Mod1+Left resize shrink width 40 px
+bindsym $mod+Mod1+Up resize grow height 40 px
+bindsym $mod+Mod1+Down resize shrink height 40 px
+bindsym $mod+Mod1+Right resize grow width 40 px
 
-# split in vertical orientation
-# bindsym $mod+z split v
-
-# enter fullscreen mode for the focused container
+# fullscreen
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
+## auto tiling
+#exec_always --no-startup-id /home/rs21/miniconda3/bin/autotiling
+
+# manual tiling
+bindsym $mod+x split toggle
+
+# scratchpad
+bindsym $mod+Shift+z move scratchpad
+bindsym $mod+z scratchpad show
+
+# switch container layout (stacked, tabbed, toggle split)
 bindsym $mod+j layout stacking
 bindsym $mod+k layout tabbed
 bindsym $mod+l layout toggle split
@@ -109,17 +146,18 @@ bindsym $mod+l layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
+# focus between tiling / floating
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# parent container
 bindsym $mod+p focus parent
 
-# focus the child container
-bindsym $mod+c focus child
+# child container
+bindsym $mod+o focus child
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+
+### WORKSPACES ###
+
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -143,14 +181,15 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-# switch to next/prev workspace
+# next/prev
 bindsym $mod+q workspace prev
 bindsym $mod+e workspace next
 
+# scroll
 bindsym --whole-window $mod+button4 workspace prev
 bindsym --whole-window $mod+button5 workspace next
 
-# move focused container to workspace
+# move to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -162,65 +201,55 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resizing
-bindsym $mod+Mod1+a resize shrink width 40 px 
-bindsym $mod+Mod1+s resize grow height 40 px 
-bindsym $mod+Mod1+w resize shrink height 40 px 
-bindsym $mod+Mod1+d resize grow width 40 px
+### LOOKS ###
 
-bindsym $mod+Mod1+Left resize shrink width 40 px 
-bindsym $mod+Mod1+Down resize grow height 40 px 
-bindsym $mod+Mod1+Up resize shrink height 40 px 
-bindsym $mod+Mod1+Right resize grow width 40 px
+# bg
+exec_always --no-startup-id feh --bg-fill ~/.dots/imgs/bg/ios.jpeg
 
-# POWER MENU
-bindsym $mod+Pause exec --no-startup-id ~/.config/rofi/rofi/powermenu.sh
+# font
+font pango:Lato 11
 
-# COLORS
+# gaps
+gaps inner 10
+
+# gap manipulation
+bindsym $mod+plus gaps inner current plus 5
+bindsym $mod+minus gaps inner current minus 5
+bindsym $mod+backslash gaps inner current set 10
+
+# borders + titles
+for_window [class="^.*"] border pixel 2
+title_align center
+smart_borders on
+
+# colors
 set $bg-color 	         #122747
 set $bd-color 	         #1d66ad
 set $inactive-bg-color   #122747
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #3587e5
-
-title_align center
-smart_borders on
-
-# window colors
 #                       border              background         text                 indicator
-client.focused          $bd-color           $bd-color          $text-color          #1d66ad
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  #122747
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #122747
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #122747
+client.focused          $bd-color           $bd-color          $text-color          #14a0e0
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #24549c
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #24549c
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #24549c
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# bar
 bar {
 	position top
-	height 25
 
 	font pango:Lato, Font Awesome 5 Free Solid 11
-	
-	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
 
+	# py3status
 	status_command py3status -c ~/.config/i3/i3status.conf
-	
-	#status_command bumblebee-status -m cpu memory time \
-	#	pasink pasource -p time.format="%I:%M:%S%P" -t iceberg-dark-powerline
 
 	tray_output none
 
 	colors {
 		background $bg-color
-	    	separator #757575
+		separator #757575
 		#                  border             background         text
 		focused_workspace  $bg-color          $bg-color          $text-color
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
