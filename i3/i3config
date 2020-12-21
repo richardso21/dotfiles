@@ -241,17 +241,15 @@ client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #24629c
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #24629c
 
-# bar
+
+### BARS ###
+
+# main bar
 bar {
 	position top
-
 	font pango:Lato, Font Awesome 5 Free Solid 11
-
-	# py3status
 	status_command py3status -c ~/.config/i3/i3status.conf
-
 	tray_output none
-
 	colors {
 		background $bg-color
 		separator #757575
@@ -262,3 +260,15 @@ bar {
 	}
 }
 
+# for tray icons (mod key to show)
+bar {
+	i3bar_command             i3bar -t
+	position                  bottom
+	workspace_buttons         no
+	mode                      hide
+	hidden_state              hide
+	modifier		  Mod1
+	colors {
+		background        "#00000000"
+	}
+}
