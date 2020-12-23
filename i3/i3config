@@ -24,16 +24,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Pause exec --no-startup-id ~/.config/rofi/rofi/powermenu.sh
 
 
-### APPS & AUTOSTART ###
-
-# autostart apps
-exec --no-startup-id mailspring
-exec --no-startup-id slack
-exec --no-startup-id discord
-exec --no-startup-id brave
-exec --no-startup-id alacritty
-exec --no-startup-id parcellite
-exec --no-startup-id "kdeconnect-cli -d 76b8dbf3a27ccf24"
+### APPS ###
 
 # app menu
 bindsym $mod+Return exec --no-startup-id ~/.config/rofi/rofi/launcher.sh
@@ -79,6 +70,23 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # screenshots
 bindsym --release $mod+Print exec --no-startup-id gnome-screenshot
 bindsym --release $mod+Shift+Print exec --no-startup-id gnome-screenshot -a
+
+
+### AUTOSTART & APP RULES ###
+
+# autostart apps
+exec --no-startup-id mailspring
+exec --no-startup-id slack
+exec --no-startup-id discord
+exec --no-startup-id brave
+exec --no-startup-id alacritty
+exec --no-startup-id parcellite
+exec --no-startup-id "kdeconnect-cli -d 76b8dbf3a27ccf24"
+
+# prepare scratchpad on start
+for_window [instance="__scratchpad"] move scratchpad
+exec --no-startup-id alacritty -name __scratchpad
+exec --no-startup-id nautilus --no-desktop --new-window -name __scratchpad
 
 # assign workspaces
 assign [class="firefox"] 2
@@ -170,7 +178,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -182,7 +189,6 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-#bindsym $mod+0 workspace number $ws10
 
 # next/prev
 bindsym $mod+q workspace prev
@@ -202,7 +208,6 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
-#bindsym $mod+Shift+0 move container to workspace number $ws10
 
 
 ### LOOKS ###
@@ -260,15 +265,17 @@ bar {
 	}
 }
 
-# for tray icons (mod key to show)
+# bottom (hidden toggle) bar
 bar {
-	i3bar_command             i3bar -t
 	position                  bottom
 	workspace_buttons         no
 	mode                      hide
 	hidden_state              hide
 	modifier		  Mod1
+	font pango:Lato, Font Awesome 5 Free Solid 11
+	status_command py3status -c ~/.config/i3/i3status_bottom.conf
 	colors {
-		background        "#00000000"
+		background        $bg-color
+		separator #757575
 	}
 }
