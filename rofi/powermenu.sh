@@ -16,7 +16,8 @@
 # row_circle      row_square      row_rounded      row_alt
 
 theme="full_square"
-dir="$HOME/.config/rofi/powermenu"
+#dir="$HOME/.config/rofi/powermenu"
+dir="$HOME/.config/rofi/rofi"
 
 # random colors
 styles=($(ls -p --hide="colors.rasi" $dir/styles))

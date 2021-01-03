@@ -13,7 +13,8 @@
 # column	row				row_center			screen			row_dock		row_dropdown
 
 theme="blurry_full"
-dir="$HOME/.config/rofi/launchers/misc"
+#dir="$HOME/.config/rofi/launchers/misc"
+dir="$HOME/.config/rofi/rofi"
 
 # comment these lines to disable random style
 #themes=($(ls -p --hide="launcher.sh" $dir))

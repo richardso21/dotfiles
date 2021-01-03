@@ -1,7 +1,7 @@
 # mouse & keyboard
 xset led on
-xinput set-prop 10 327 0, 1
-xinput set-prop 10 324 -0.117647
+xinput set-prop 10 335 0, 1
+xinput set-prop 10 332 -0.117647
 
 # redshift
 redshift-gtk &

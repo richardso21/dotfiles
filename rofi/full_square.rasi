@@ -14,8 +14,8 @@ configuration {
     drun-display-format:            "{name}";
     disable-history:                false;
     fullscreen:                     true;
-	hide-scrollbar: 				true;
-	sidebar-mode: 					false;
+	hide-scrollbar: 	true;
+	sidebar-mode: 		false;
 }
 
 @import "styles/blur.rasi"
@@ -28,22 +28,22 @@ window {
 }
 
 prompt {
-    enabled: 						true;
+    enabled: 			true;
     padding:                        1% 1% 1% 0%;
-	background-color: 				@background-alt;
-	text-color: 					@foreground;
+	background-color: 	@background-alt;
+	text-color: 		@foreground;
 }
 
 textbox-prompt-colon {
-	expand: 						false;
-	str: 							"iUseArchBtw |";
-	background-color: 				@background-alt;
-	text-color: 					@foreground;
+	expand: 		false;
+	str: 			"iUseArchBtw  |";
+	background-color: 	@background-alt;
+	text-color: 		@foreground;
     padding:                        1% 0.5% 1% 0.5%;
 }
 
 inputbar {
-	children: 						[ textbox-prompt-colon, prompt ];
+	children: 		[ textbox-prompt-colon, prompt ];
     background-color:               @background-alt;
     text-color:                     @foreground;
     expand:                         false;

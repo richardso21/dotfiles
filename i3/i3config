@@ -271,7 +271,7 @@ bar {
 	workspace_buttons         no
 	mode                      hide
 	hidden_state              hide
-	modifier		  Mod1
+	modifier		  $mod
 	font pango:Lato, Font Awesome 5 Free Solid 11
 	status_command py3status -c ~/.config/i3/i3status_bottom.conf
 	colors {
