@@ -42,6 +42,9 @@ alias v="vim $@"
 alias c="clear"
 alias nf="neofetch"
 
+alias ins="yay $@"
+alias unins="yay -Rns $@"
+
 # AUTOSTART WHEN NO DISPLAY
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 	  exec startx

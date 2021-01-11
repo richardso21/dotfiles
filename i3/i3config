@@ -84,9 +84,11 @@ exec --no-startup-id parcellite
 exec --no-startup-id "kdeconnect-cli -d 76b8dbf3a27ccf24"
 
 # prepare scratchpad on start
-for_window [instance="__scratchpad"] move scratchpad
-exec --no-startup-id alacritty -name __scratchpad
-exec --no-startup-id nautilus --no-desktop --new-window -name __scratchpad
+for_window [class="__scratchpad"] move scratchpad
+for_window [title="__scratchpad"] move scratchpad
+
+exec --no-startup-id alacritty -t __scratchpad
+exec --no-startup-id thunar --class=__scratchpad
 
 # assign workspaces
 assign [class="firefox"] 2
@@ -94,7 +96,7 @@ assign [class="Brave-browser"] 2
 assign [class="Slack"] 5
 assign [class="Mailspring"] 5
 assign [class="discord"] 5
-for_window [class="Spotify"] move to workspace $ws3
+for_window [class="Spotify"] move to workspace $ws4
 
 # floating window exceptions
 for_window [class="zoom"] floating enable
@@ -271,7 +273,8 @@ bar {
 	workspace_buttons         no
 	mode                      hide
 	hidden_state              hide
-	modifier		  $mod
+	#modifier		  $mod
+	modifier		  Mod1
 	font pango:Lato, Font Awesome 5 Free Solid 11
 	status_command py3status -c ~/.config/i3/i3status_bottom.conf
 	colors {

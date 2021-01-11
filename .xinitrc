@@ -4,7 +4,7 @@ xinput set-prop 10 335 0, 1
 xinput set-prop 10 332 -0.117647
 
 # redshift
-redshift-gtk &
+redshift &
 
 # dunst
 dunst &
